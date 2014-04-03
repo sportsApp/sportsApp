@@ -1,10 +1,10 @@
 'use strict';
 
-angular.module('sportsAppApp', [
+angular.module('sportsApp', [
   'ngCookies',
   'ngResource',
   'ngSanitize',
-  'ngRoute'
+  'ngRoute',
 ])
   .config(function ($routeProvider) {
     $routeProvider
