@@ -23,4 +23,11 @@ describe('Service: espnAPI', function () {
     espnAPI.topHeadlines();
     $httpBackend.flush();
   });
+
+  it('should return a promise', function(){
+    $httpBackend.whenJSONP(/v1\/sports\/news\/headlines\/top\?apiKey=/).respond(200, 'success');
+    var headlinePromise = espnAPI.topHeadlines();
+    expect(Object.getOwnPropertyNames(headlinePromise)).toEqual(['then', 'catch', 'finally', 'success', 'error']);
+    $httpBackend.flush();
+  });
 });
