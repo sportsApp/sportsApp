@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('sportsAppApp')
-  .controller('MainCtrl', 'espnAPI', function ($scope, $http, $espn) {
-    $espn.news().success(function(data) {
+angular.module('sportsApp')
+  .controller('MainCtrl', function ($scope, $http, espnAPI) {
+    espnAPI.topHeadlines().success(function(data) {
       $scope.headlines = data.headlines;
       console.log($scope.headlines);
     });
