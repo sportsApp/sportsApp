@@ -17,7 +17,11 @@
   <h1>Categories</h1>
   <ul>
     <li ng-repeat="category in categories">
-      {{ category.name }}
+      <a ng-href="{{category.links.api.news.href}}">
+        {{ category.name }}
+      </a>
     </li>
   </ul>
 </section>
+
+<div><pre>{{categories | json}}</pre></div>
