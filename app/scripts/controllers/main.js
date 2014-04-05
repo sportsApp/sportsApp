@@ -6,6 +6,6 @@ angular.module('sportsApp')
       $scope.headlines = data.headlines;
     });
     espnAPI.categories().success(function(data) {
-      $scope.categories = data.sports;
+      $scope.categories = data.sports.slice(0, 5);
     });
   });
