@@ -2,8 +2,9 @@
 
 describe('Service: espnAPI', function () {
 
-  var espnAPI, 
+  var espnAPI,
       $httpBackend;
+
 
   // load the controller's module
   beforeEach(module('sportsApp'));
@@ -28,6 +29,19 @@ describe('Service: espnAPI', function () {
     $httpBackend.whenJSONP(/v1\/sports\/news\/headlines\/top\?apiKey=/).respond(200, 'success');
     var headlinePromise = espnAPI.topHeadlines();
     expect(Object.getOwnPropertyNames(headlinePromise)).toEqual(['then', 'catch', 'finally', 'success', 'error']);
+    $httpBackend.flush();
+  });
+
+  it('should call categories url', function () {
+    $httpBackend.expectJSONP(/v1\/sports\?apiKey=/).respond(200, 'success');
+    espnAPI.categories();
+    $httpBackend.flush();
+  });
+
+  it('should return a promise', function(){
+    $httpBackend.expectJSONP(/v1\/sports\?apiKey=/).respond(200, 'success');
+    var categoriesPromise = espnAPI.categories();
+    expect(Object.getOwnPropertyNames(categoriesPromise)).toEqual(['then', 'catch', 'finally', 'success', 'error']);
     $httpBackend.flush();
   });
 });

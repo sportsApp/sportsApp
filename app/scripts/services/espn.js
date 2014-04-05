@@ -6,14 +6,14 @@ angular.module('sportsApp')
     function callAPI(url, query_params){
       return $http({
         method: 'JSONP',
-        url: 'http://api.espn.com/v1/sports/'
+        url: 'http://api.espn.com/v1/'
           +  url
           + '?apiKey=3npcsdtfa9majpf6zr7a7dtz&callback=JSON_CALLBACK'
       });
     }
 
     this.topHeadlines = function(){
-      return callAPI('news/headlines/top');
+      return callAPI('sports/news/headlines/top');
     };
 
     this.categories = function(){
