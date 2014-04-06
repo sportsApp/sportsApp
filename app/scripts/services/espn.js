@@ -3,12 +3,16 @@
 angular.module('sportsApp')
   .service('espnAPI', function($http){
 
-    function callAPI(url, query_params){
+    function callAPI(url, queryParams){
+      if(typeof queryParams === 'undefined'){
+        queryParams = '';
+      }
       return $http({
         method: 'JSONP',
         url: 'http://api.espn.com/v1/'
           +  url
-          + '?apiKey=3npcsdtfa9majpf6zr7a7dtz&callback=JSON_CALLBACK'
+          +  queryParams
+          +  '?apiKey=3npcsdtfa9majpf6zr7a7dtz&callback=JSON_CALLBACK'
       });
     }
 
@@ -20,4 +24,11 @@ angular.module('sportsApp')
       return callAPI('sports');
     };
 
+    this.categoryHeadlines = function(category) {
+      return callAPI('sports/'+category+'/news/');
+    };
+
   });
+
+
+
