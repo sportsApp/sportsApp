@@ -16,16 +16,16 @@ angular.module('sportsApp')
       });
     }
 
-    this.topHeadlines = function(){
-      return callAPI('sports/news/headlines/top');
+    this.categoryHeadlines = function(category) {
+      return callAPI('sports/'+category+'/news/');
     };
 
     this.categories = function(){
       return callAPI('sports');
     };
 
-    this.categoryHeadlines = function(category) {
-      return callAPI('sports/'+category+'/news/');
+    this.topHeadlines = function(){
+      return callAPI('sports/news/headlines/top');
     };
 
   });
