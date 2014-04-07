@@ -347,11 +347,14 @@ module.exports = function (grunt) {
     karma: {
       unit: {
         configFile: 'karma.conf.js',
-        singleRun: true
+        singleRun: grunt.option('debug') ? false : true
       }
     }
   });
 
+  grunt.registerTask('karma-debug', function (target) {
+
+  });
 
   grunt.registerTask('serve', function (target) {
     if (target === 'dist') {
@@ -366,11 +369,6 @@ module.exports = function (grunt) {
       'connect:livereload',
       'watch'
     ]);
-  });
-
-  grunt.registerTask('server', function () {
-    grunt.log.warn('The `server` task has been deprecated. Use `grunt serve` to start a server.');
-    grunt.task.run(['serve']);
   });
 
   grunt.registerTask('test', [
