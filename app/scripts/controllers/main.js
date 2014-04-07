@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('sportsApp')
-  .controller('MainCtrl', function ($scope, $http, espnAPI) {
-    espnAPI.topHeadlines().success(function(data) {
-      $scope.headlines = data.headlines;
-      console.log($scope.headlines);
+  .controller('MainCtrl', ['$scope', 'espnSports', '$log', function ($scope, sports, $log) {
+    sports.get().$promise.then(function(data) {
+      $scope.headlines = data;
+      $log.info($scope.headlines);
     });
-  });
+  }]);

@@ -1,18 +1,37 @@
-'use strict';
 
-angular.module('sportsApp')
-  .service('espnAPI', function($http){
+(function(window, angular, undefined) {'use strict';
 
-    function callAPI(url, query_params){
-      return $http({
-        method: 'JSONP',
-        url: 'http://api.espn.com/v1/sports/' 
-          +  url 
-          + '?apiKey=3npcsdtfa9majpf6zr7a7dtz&callback=JSON_CALLBACK'
-      });
-    }
+angular.module('espnAPI',['ngResource']).
+  factory('espnCache', function($cacheFactory) {
+   return $cacheFactory('espn-cache');
+  }).
+  service('espnBase', function(espnCache){
+    var options = {
+          apiKey: '',
+          version: 'v1',
+          method: 'JSONP',
+          callback: 'JSON_CALLBACK'
+        },
+        url = 'http://api.espn.com/:version/';
 
-    this.topHeadlines = function(){
-      return callAPI('news/headlines/top');
-    }
+    return {
+          cache: function(){
+                    return espnCache;
+                  },
+            url:  function(){
+                    return angular.copy(url);
+                  },
+        options:  function(){
+                    return angular.copy(options);
+                  },
+     setVersion:  function(version){
+                    options.version = version;
+                    return this;
+                  },
+      setAPIKey:  function(key) {
+                    options.apiKey = key;
+                    return this;
+                  }
+    };
   });
+})(window, window.angular);
