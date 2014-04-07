@@ -1,17 +1,24 @@
 <section>
+  <a ng-href="#/settings">Settings</a>
   <h1>Latest News</h1>
+
   <article ng-repeat="headline in headlines">
-    <p>{{headline.title}}</p>
+    <h1>{{headline.headline}}</h1>
+    <p>{{headline.description}}</p>
+    <a ng-href="#/news/{{headline.id}}">view story</a>
   </article>
 
-  <h1>Categories</h1>
-  <ul>
-    <li ng-repeat="category in categories">
-      <a ng-href="#/category/{{category.name}}">
-        {{ category.name }}
-      </a>
-    </li>
-  </ul>
+<!--   <pre>{{headlines | json}}</pre> -->
 </section>
 
-<pre>{{categories | json}}</pre>
+<h1>Categories</h1>
+<ul>
+  <li ng-repeat="category in categories">
+    <a ng-href="#/category/{{category.name}}">
+      {{ category.name }}
+    </a>
+  </li>
+</ul>
+
+
+<!-- <div><pre>{{categories | json}}</pre></div> -->
