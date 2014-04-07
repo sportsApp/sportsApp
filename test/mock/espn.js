@@ -1,8 +1,9 @@
 (function(window, angular){
 /**
-* espnAPIMocks Modul;
+* espnAPIMocks Module
 *
 * Description
+* This is the base for mocks for espnAPI
 */
   angular.module('espnAPIMocks', []);
 })(window, window.angular);
