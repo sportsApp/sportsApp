@@ -1,7 +1,7 @@
 (function(window, angular, undefined) {'use strict';
   angular.module('espnAPI').
     service('espnSports', function($resource, espnBase, $log) {
-      $log.info(angular.module('espnAPI'));
+      // $log.info(angular.module('espnAPI'));
       var   url = espnBase.url() + 'sports',
         options = angular.extend({}, espnBase.options());
 
