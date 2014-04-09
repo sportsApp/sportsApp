@@ -5,8 +5,9 @@ angular.module('sportsApp', [
   'ngResource',
   'ngSanitize',
   'ngRoute',
-])
-  .config(function ($routeProvider) {
+  'espnAPI'
+]).
+  config(function ($routeProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
@@ -23,4 +24,7 @@ angular.module('sportsApp', [
       .otherwise({
         redirectTo: '/'
       });
+  }).
+  run(function(espnBase){
+    espnBase.setAPIKey('3npcsdtfa9majpf6zr7a7dtz');
   });
