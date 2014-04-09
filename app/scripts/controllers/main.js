@@ -1,9 +1,11 @@
 'use strict';
 
 angular.module('sportsApp')
-  .controller('MainCtrl', function ($scope, $http, espnAPI) {
+  .controller('MainCtrl', function ($scope, espnAPI, $routeParams) {
     espnAPI.topHeadlines().success(function(data) {
       $scope.headlines = data.headlines;
-      console.log($scope.headlines);
+    });
+    espnAPI.categories().success(function(data) {
+      $scope.categories = data.sports.slice(0, 5);
     });
   });

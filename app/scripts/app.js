@@ -12,6 +12,14 @@ angular.module('sportsApp', [
         templateUrl: 'views/main.html',
         controller: 'MainCtrl'
       })
+      .when('/category/:categoryId', {
+        templateUrl: 'views/category.html',
+        controller: 'CategoryCtrl'
+      })
+      .when('/settings', {
+        templateUrl: 'views/settings.html',
+        controller: 'SettingsCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });

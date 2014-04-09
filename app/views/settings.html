@@ -1,0 +1,8 @@
+<h1>Settings</h1>
+
+<select ng-model="sport" ng-change="setSport()" ng-options="category.name for category in categories">
+  <option value="">Choose your sport</option>
+</select>
+
+<p ng-show="sport">Choose a {{sport.name}} team to follow.</p>
+
