@@ -8,17 +8,15 @@
     <a ng-href="#/news/{{headline.id}}">view story</a>
   </article>
 
-<!--   <pre>{{headlines | json}}</pre> -->
 </section>
 
-<h1>Categories</h1>
+
+<h1>Sports</h1>
 <ul>
-  <li ng-repeat="category in categories">
-    <a ng-href="#/category/{{category.name}}">
-      {{ category.name }}
+  <li ng-repeat="sport in sports | filter:{links.api.news:'!!'}">
+    <a ng-href="#/category/{{sport.name}}">
+      {{ sport.name }}
     </a>
   </li>
 </ul>
 
-
-<!-- <div><pre>{{categories | json}}</pre></div> -->

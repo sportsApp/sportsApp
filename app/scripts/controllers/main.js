@@ -1,19 +1,20 @@
 'use strict';
 
 angular.module('sportsApp')
-  .controller('MainCtrl', ['$scope', 'espnSports', '$routeParams','$log', function ($scope, sports, $routeParams, $log) {
+  .controller('MainCtrl', ['$scope', 'espnAPI', 'espnSports', '$routeParams','$log', function ($scope, espnAPI, sports, $routeParams, $log) {
     espnAPI.topHeadlines().success(function(data) {
       $scope.headlines = data.headlines;
     });
 
-    espnAPI.categories().success(function(data) {
-      $scope.categories = data.sports.slice(0, 5);
-    });
+    // espnAPI.categories().success(function(data) {
+    //   $scope.categories = data.sports.slice(0, 5);
+    // });
 
-    $log.info(sports.get());
+    // $log.info(sports.get());
 
     sports.get().$promise.then(function(data) {
-      $scope.headlines = data;
-      $log.info($scope.headlines);
+
+      $scope.sports = data.sports;
+      $log.info($scope.sports);
     });
   }]);
