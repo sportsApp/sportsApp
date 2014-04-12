@@ -21,6 +21,10 @@ angular.module('sportsApp', [
         templateUrl: 'views/settings.html',
         controller: 'SettingsCtrl'
       })
+      .when('/sports/:sportType/:league/teams/:teamId', {
+        templateUrl: 'views/team.html',
+        controller: 'TeamCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
