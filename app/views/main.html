@@ -12,7 +12,7 @@
 <aside class="news-nav">
   <h1>Sports</h1>
 
-  <ul style="" class="news-nav">
+  <ul>
     <li ng-repeat="sport in sports | filter:{links.api.news:'!!'}">
       <p data-sport="{{sport.name}}" ng-click="refreshNews($event); activeLink($index)" ng-class="{ 'active': $index == selectedIndex }">
         {{ sport.name }}
