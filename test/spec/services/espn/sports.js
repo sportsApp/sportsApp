@@ -12,7 +12,7 @@ describe('Service: espnSports', function () {
     $httpBackend = $injector.get('$httpBackend');
     cache = $injector.get('espnCache');
     sports = $injector.get('espnSports');
-    mocks = $injector.get('epnSports.defaultResponse');
+    mocks = $injector.get('epnSportsData').defaultResponse;
   }));
 
   afterEach (function () {
