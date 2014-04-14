@@ -6,8 +6,7 @@ describe('Service: espnSports', function () {
       $httpBackend;
 
   // load the controller's module
-  beforeEach(module('espnAPI'));
-  beforeEach(module('espnAPIMocks'));
+  beforeEach(module('espnAPI','espnAPIMocks'));
 
   beforeEach(inject(function($injector) {
     $httpBackend = $injector.get('$httpBackend');
