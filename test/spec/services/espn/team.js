@@ -2,8 +2,6 @@ describe('Service: espnTeam', function () {
 
   var team,
       mocks,
-      cache,
-      $routes,
       $httpBackend;
 
   // load the controller's module
@@ -12,10 +10,8 @@ describe('Service: espnTeam', function () {
 
   beforeEach(inject(function($injector) {
     $httpBackend = $injector.get('$httpBackend');
-    $routes = $injector.get('$routeParams');
-    cache = $injector.get('espnCache');
-    team = $injector.get('espnTeam');
     mocks = $injector.get('espnTeam.defaultResponse');
+    team = $injector.get('espnTeam');
   }));
 
   afterEach (function () {
