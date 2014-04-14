@@ -14,24 +14,23 @@ angular.module('espnAPI',['ngResource']).
         url = 'http://api.espn.com/:version/';
 
     return {
-                  cache: function(){
-                            return espnCache;
-                          },
-                    url:  function(){
-                            return angular.copy(url);
-                          },
-                options:  function(){
-                            return angular.copy(options);
-                          },
-             setVersion:  function(version){
-                            options.version = version;
-                            return this;
-                          },
-              setAPIKey:  function(key) {
-                            options.apiKey = key;
-                            return this;
-                          },
-
+          cache: function(){
+                    return espnCache;
+                  },
+            url:  function(){
+                    return angular.copy(url);
+                  },
+        options:  function(){
+                    return angular.copy(options);
+                  },
+     setVersion:  function(version){
+                    options.version = version;
+                    return this;
+                  },
+      setAPIKey:  function(key) {
+                    options.apiKey = key;
+                    return this;
+                  }
     };
   }).
   service('espnAPI', ['$http', function ($http) {
@@ -41,12 +40,12 @@ angular.module('espnAPI',['ngResource']).
       }
       return $http({
         method: 'JSONP',
-        url: 'http://api.espn.com/v1/'
-          +  url
-          +  queryParams
-          +  '?apiKey=3npcsdtfa9majpf6zr7a7dtz&callback=JSON_CALLBACK'
+        url: 'http://api.espn.com/v1/' +
+          url +
+          queryParams +
+          '?apiKey=3npcsdtfa9majpf6zr7a7dtz&callback=JSON_CALLBACK'
       });
-    };
+    }
 
     return {
       categoryHeadlines:  function(category) {
