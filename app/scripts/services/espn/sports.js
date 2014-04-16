@@ -6,7 +6,7 @@
         options = angular.extend({}, espnBase.options());
 
       return $resource(url, options, {
-        get: angular.extend({method: 'JSONP', cache: espnBase.cache() }, espnBase.options())
+        get: angular.extend({cache: espnBase.cache() }, espnBase.options())
       });
     });
 })(window, window.angular);
