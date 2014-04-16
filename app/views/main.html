@@ -1,4 +1,4 @@
-<section>
+<section class="news-body">
   <a ng-href="#/settings">Settings</a>
   <h1>Latest News</h1>
 
@@ -7,16 +7,17 @@
     <p>{{headline.description}}</p>
     <a ng-href="#/news/{{headline.id}}">view story</a>
   </article>
-
 </section>
 
+<aside class="news-nav">
+  <h1>Sports</h1>
 
-<h1>Sports</h1>
-<ul>
-  <li ng-repeat="sport in sports | filter:{links.api.news:'!!'}">
-    <a ng-href="#/category/{{sport.name}}">
-      {{ sport.name }}
-    </a>
-  </li>
-</ul>
+  <ul>
+    <li ng-repeat="sport in sports | filter:{links.api.news:'!!'}">
+      <p data-sport="{{sport.name}}" ng-click="refreshNews($event); activeLink($index)" ng-class="{ 'active': $index == selectedIndex }">
+        {{ sport.name }}
+      </p>
+    </li>
+  </ul>
+</aside>
 
