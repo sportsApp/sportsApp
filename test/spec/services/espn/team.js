@@ -1,7 +1,7 @@
 describe('Service: espnTeam', function () {
 
   var team,
-      mocks,
+      mockHTTPResponse,
       $httpBackend;
 
   // load the controller's module
@@ -10,7 +10,7 @@ describe('Service: espnTeam', function () {
 
   beforeEach(inject(function($injector) {
     $httpBackend = $injector.get('$httpBackend');
-    mocks = $injector.get('espnTeam.defaultResponse');
+    mockHTTPResponse = $injector.get('espnTeamData').defaultResponse;
     team = $injector.get('espnTeam');
   }));
 
@@ -23,18 +23,39 @@ describe('Service: espnTeam', function () {
 
   describe('.get()', function(){
     var spyCB,
-      teamObj;
+      response,
+      league = 'nfl',
+      sport = 'football',
+      teamId = 26;
+
     beforeEach(function(){
-      spyCB = jasmine.createSpy().andReturn(mocks);
-      $httpBackend.expectJSONP(/v1\/sports\/football\/nfl\/teams\/26\?apiKey=/).respond(spyCB);
-      teamObj = team.get({sportType: 'football', league: 'nfl', teamId: '26'});
+      spyCB = jasmine.createSpy().andReturn(mockHTTPResponse);
+
+      $httpBackend.expectJSONP(new RegExp('v1/sports/' + sport + '/' + league + '/teams/' + teamId))
+        .respond(mockHTTPResponse);
+
+      team.get({sportType: sport, league: league, teamId: teamId }, function(data){
+        response = data;
+      });
     });
 
-    it('should return a promise', function(){
+    it("should have a correct url", function(){
       $httpBackend.flush();
+    });
 
-      expect(Object.getOwnPropertyNames(teamObj.$promise)).
-        toEqual([ 'then', 'catch', 'finally' ]);
+    it("should have a response",function(){
+      $httpBackend.flush();
+      expect(response).not.toBeNull();
+    });
+
+    it("should be a transformed response",function(){
+      $httpBackend.flush();
+      expect(response).not.toEqual(mockHTTPResponse);
+    });
+
+    it("should have returned a team with id", function(){
+      $httpBackend.flush();
+      expect(response.id).toBe(teamId);
     });
   });
 });

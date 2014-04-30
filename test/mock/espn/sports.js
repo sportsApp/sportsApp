@@ -1,6 +1,6 @@
 (function(window, angular){
 angular.module('espnAPIMocks').
-  value('epnSportsData', {
+  value('espnSportsData', {
     defaultResponse: {
       "sports": [
         {

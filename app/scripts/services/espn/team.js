@@ -1,11 +1,6 @@
 (function(window, angular, undefined) {'use strict';
   function transformTeam(data) {
-    var team =  data.sports[0].leagues[0].teams[0];
-    return {
-      name: team.name,
-      color: team.color,
-      links: team.links
-    }
+    return data.sports[0].leagues[0].teams[0];
   }
 
   angular.module('espnAPI').
@@ -13,12 +8,8 @@
 
     var   url = espnBase.url() + 'sports/:sportType/:league/teams/:teamId',
     options = angular.extend({}, espnBase.options());
-
     return $resource(url, options, {
-      get: angular.extend({
-        url: url,
-        transformResponse:transformTeam
-      }, espnBase.options())
+      get: angular.extend({ transformResponse: transformTeam}, options)
     });
   }]);
 })(window, window.angular);
