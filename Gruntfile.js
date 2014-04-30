@@ -27,8 +27,7 @@ module.exports = function (grunt) {
 
     // Watches files for changes and runs tasks based on the changed files
     watch: {
-      js: {
-        files: ['<%= yeoman.app %>/scripts/{,*/}*.js'],
+      js: {        files: ['<%= yeoman.app %>/scripts/{,*/}*.js'],
         tasks: ['newer:jshint:all'],
         options: {
           livereload: true
@@ -347,13 +346,22 @@ module.exports = function (grunt) {
     karma: {
       unit: {
         configFile: 'karma.conf.js',
-        singleRun: grunt.option('debug') ? false : true
-      }
+        singleRun: !!!grunt.option('debug'),
+        colors: !!!grunt.option('no-colors'),
+        reporters: ['dots']
+      },
+      e2e: {
+        configFile: 'karma-e2e.conf.js',
+        singleRun: !!!grunt.option('debug'),
+        colors: !!!grunt.option('no-colors'),
+        reporters: ['dots']
+      },
     }
   });
 
-  grunt.registerTask('karma-debug', function (target) {
-
+  grunt.registerTask('karma:debug', function (target) {
+    grunt.config('karma.unit.singleRun', false);
+    grunt.task.run(['karma']);
   });
 
   grunt.registerTask('serve', function (target) {

@@ -2,16 +2,25 @@
 // http://karma-runner.github.io/0.10/config/configuration-file.html
 
 module.exports = function(config) {
+  proxies = {
+    // change this if you've changed your grunt server port. default is 9000
+    '/': 'http://localhost:9000'
+  };
+
+  urlRoot = '/__e2e/';
+
   config.set({
     // base path, that will be used to resolve files and exclude
     basePath: '',
+
+
 
     // testing framework to use (jasmine/mocha/qunit/...)
     frameworks: ['ng-scenario'],
 
     // list of files / patterns to load in the browser
     files: [
-      'test/e2e/**/*.js'
+    'test/e2e/**/*.js'
     ],
 
     // list of files / patterns to exclude
