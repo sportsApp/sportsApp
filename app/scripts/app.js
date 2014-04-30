@@ -48,7 +48,7 @@ angular.module('sportsApp', [
     '/images/medal.png',
     '/images/track.png'
   ]).
-  controller('AppCrtl', ['$scope', '$timeout', function($scope, $timeout){
+  controller('AppCtrl', ['$scope', '$timeout', function($scope, $timeout){
     $scope.openNav = function() {
       $timeout(function(){ $scope.navStyle = ['st-effect-12', 'st-menu-open']; }, 100);
     };
