@@ -12,7 +12,7 @@ describe('Service: espnSports', function () {
     $httpBackend = $injector.get('$httpBackend');
     cache = $injector.get('espnCache');
     sports = $injector.get('espnSports');
-    mocks = $injector.get('espnSportsData').defaultResponse;
+    mocks = $injector.get('espnSportData').defaultResponse;
   }));
 
   afterEach (function () {
@@ -24,11 +24,13 @@ describe('Service: espnSports', function () {
 
   describe('.get()', function(){
     var spyCB,
-      sportsObj;
+      sportsObj,
+      sportName = 'football';
+
     beforeEach(function(){
       spyCB = jasmine.createSpy().andReturn(mocks);
-      $httpBackend.expectJSONP(/v1\/sports\?apiKey=/).respond(spyCB);
-      sportsObj = sports.get();
+      $httpBackend.expectJSONP(new RegExp('v1/sports/'+sportName+'?apiKey=')).respond(spyCB);
+      sportsObj = sports.get({sport: sportName});
     });
   });
 });
