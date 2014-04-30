@@ -5,6 +5,7 @@ angular.module('sportsApp', [
   'ngResource',
   'ngSanitize',
   'ngRoute',
+  'classy',
   'espnAPI'
 ]).
   config(function ($routeProvider) {
